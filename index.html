@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title>Slide Javascript</title>
+    <meta charset="utf-8" />
+    <style>
+      #dvslider {
+        width: 1358px;
+        height: 666px;
+        border: 0px solid #000;
+      }
+    </style>
+    <script>
+      var imgs = [];
+      var slider;
+      var imgCurrent;
+      var maxImg;
+      var tmp;
+      var timeChange;
+
+      function preLoading() {
+        var s = 1;
+        for (var i = 0; i < 5; i++) {
+          imgs[i] = new Image();
+          imgs[i].src = "imgs/s" + s + ".jpg";
+          s++;
+        }
+      }
+
+      function loadImg(img) {
+        slider.style.backgroundImage = "url('" + imgs[img].src + "')";
+      }
+
+      function start() {
+        preLoading();
+        imgCurrent = 0;
+        maxImg = imgs.length - 1;
+        slider = document.getElementById("dvslider");
+        loadImg(imgCurrent);
+        timeChange = 3000;
+        tmp = setInterval(change, timeChange);
+      }
+
+      function change() {
+        imgCurrent++;
+        if (imgCurrent > maxImg) {
+          imgCurrent = 0;
+        }
+        loadImg(imgCurrent);
+      }
+
+      window.addEventListener("load", start);
+    </script>
+  </head>
+  <body>
+    <div id="dvslider"></div>
+  </body>
+</html>
